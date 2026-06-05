@@ -669,14 +669,11 @@ function renderProducts() {
 
 function updateCartCount() {
   const count = getCartCount();
-  document.querySelectorAll("[data-cart-count]").forEach(el => {
-    el.textContent = String(count);
-    el.hidden = count === 0;
-  });
   document.querySelectorAll(".cart-link").forEach(link => {
     link.classList.toggle("has-items", count > 0);
     link.setAttribute("aria-label", t("viewCart"));
   });
+  renderCartFloatContent();
 }
 
 function pulseCartLink() {
@@ -690,29 +687,32 @@ function pulseCartLink() {
 
 function showCartAddedFeedback(product) {
   pulseCartLink();
-  let toast = document.getElementById("cartAddToast");
-  if (!toast) {
-    toast = document.createElement("div");
-    toast.id = "cartAddToast";
-    toast.className = "cart-add-toast";
-    toast.setAttribute("role", "status");
-    toast.setAttribute("aria-live", "polite");
-    document.body.appendChild(toast);
-  }
-  const productName = product[currentLang].name;
-  toast.innerHTML = `
-    <img src="${product.image}" alt="">
-    <div>
-      <strong>${t("cartAddedToast")}</strong>
-      <span>${productName}</span>
-    </div>
-    <a href="./cart.html">${t("cartAddedOpen")}</a>
-  `;
-  toast.classList.remove("show");
-  void toast.offsetWidth;
-  toast.classList.add("show");
-  window.clearTimeout(showCartAddedFeedback.timer);
-  showCartAddedFeedback.timer = window.setTimeout(() => toast.classList.remove("show"), 2300);
+  renderCartFloatContent(product);
+}
+
+function renderCartFloatContent(focusProduct = null) {
+  const count = getCartCount();
+  const items = getCartItems();
+  const fallbackItem = items[items.length - 1];
+  const product = focusProduct || fallbackItem?.product;
+  document.querySelectorAll(".cart-float").forEach(link => {
+    if (!count || !product) {
+      link.innerHTML = "";
+      link.classList.remove("has-items");
+      return;
+    }
+    const productName = product[currentLang].name;
+    link.classList.add("has-items");
+    link.innerHTML = `
+      <span class="cart-float-cta">${t("cartAddedOpen")}</span>
+      <span class="cart-float-copy">
+        <strong>${t("cartAddedToast")}</strong>
+        <em>${escapeHtml(productName)}</em>
+      </span>
+      <img src="${product.image}" alt="${escapeHtml(productName)}">
+      <b data-cart-count>${count}</b>
+    `;
+  });
 }
 
 function setupCartNav() {
@@ -721,12 +721,7 @@ function setupCartNav() {
   link.className = "cart-link cart-float";
   link.href = "./cart.html";
   link.setAttribute("aria-label", t("viewCart"));
-  link.innerHTML = `
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M7.2 7.6h13.1l-1.45 7.15a2.3 2.3 0 0 1-2.25 1.85H9.15a2.3 2.3 0 0 1-2.26-1.88L5.38 6.6H3.7a1 1 0 1 1 0-2h2.5c.49 0 .91.35 1 .83l.22 1.17Zm.55 2 1.02 5.03c.04.19.2.32.38.32h7.45c.18 0 .34-.13.38-.31l1.02-5.04H7.75Zm1.65 10a1.35 1.35 0 1 1 0-2.7 1.35 1.35 0 0 1 0 2.7Zm7.35 0a1.35 1.35 0 1 1 0-2.7 1.35 1.35 0 0 1 0 2.7Z"/>
-    </svg>
-    <b data-cart-count hidden>0</b>
-  `;
+  link.setAttribute("aria-live", "polite");
   document.body.appendChild(link);
   updateCartCount();
 }
