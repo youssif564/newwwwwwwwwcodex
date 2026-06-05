@@ -3238,6 +3238,75 @@ html[dir="rtl"] .checkout-total-final strong {
   line-height: 1;
 }
 .cart-link.has-items { border-color: rgba(255,214,119,.28); color: #fff; }
+.cart-link.cart-pulse {
+  animation: cartPulse .72s ease;
+}
+@keyframes cartPulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,214,119,.22); }
+  45% { transform: scale(1.06); box-shadow: 0 0 0 8px rgba(255,214,119,.10); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,214,119,0); }
+}
+.cart-add-toast {
+  position: fixed;
+  z-index: 1300;
+  inset-inline-end: 22px;
+  bottom: 94px;
+  width: min(360px, calc(100vw - 32px));
+  display: grid;
+  grid-template-columns: 52px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 22px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.025)),
+    #1a1a1a;
+  border: 1px solid rgba(255,214,119,.28);
+  box-shadow: 0 22px 60px rgba(0,0,0,.52);
+  transform: translateY(18px) scale(.98);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .24s ease, opacity .24s ease;
+}
+.cart-add-toast.show {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+.cart-add-toast img {
+  width: 52px;
+  height: 44px;
+  border-radius: 13px;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,.1);
+}
+.cart-add-toast strong {
+  display: block;
+  color: var(--gold-soft);
+  font-weight: 950;
+  line-height: 1.2;
+}
+.cart-add-toast span {
+  display: block;
+  color: rgba(255,255,255,.72);
+  font-size: .86rem;
+  font-weight: 800;
+  line-height: 1.35;
+  margin-top: 2px;
+}
+.cart-add-toast a {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--gold-soft);
+  color: #070707;
+  font-size: .82rem;
+  font-weight: 950;
+  white-space: nowrap;
+}
 .product-actions {
   display: grid;
   grid-template-columns: 1fr;
@@ -3549,6 +3618,17 @@ html[dir="rtl"] .checkout-total-final strong {
     min-height: 38px;
     padding: 7px 10px;
     font-size: .82rem;
+  }
+  .cart-add-toast {
+    inset-inline: 14px;
+    bottom: 86px;
+    width: auto;
+    grid-template-columns: 48px 1fr;
+    padding: 11px;
+  }
+  .cart-add-toast a {
+    grid-column: 1 / -1;
+    width: 100%;
   }
   .product-detail-copy,
   .product-detail-copy p {
