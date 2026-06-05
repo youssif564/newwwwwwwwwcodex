@@ -3862,3 +3862,97 @@ html[dir="rtl"] .checkout-total-final strong {
     border-color: rgba(255,214,119,.48) !important;
   }
 }
+
+/* ===== Floating cart opposite WhatsApp ===== */
+.cart-float {
+  position: fixed !important;
+  z-index: 1000 !important;
+  width: 54px !important;
+  min-width: 54px !important;
+  height: 54px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.02)),
+    #1A1A1A !important;
+  border: 1px solid rgba(255,214,119,.34) !important;
+  color: var(--gold-soft) !important;
+  box-shadow: 0 16px 38px rgba(0,0,0,.36), 0 0 0 1px rgba(255,214,119,.06) !important;
+}
+
+.cart-float svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+
+.cart-float b {
+  position: absolute;
+  top: -5px;
+  inset-inline-end: -5px;
+  min-width: 21px;
+  height: 21px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--gold-soft);
+  color: #070707;
+  border: 2px solid #050505;
+  font-size: .72rem;
+  line-height: 1;
+  font-weight: 950;
+}
+
+.cart-float.has-items {
+  border-color: rgba(255,214,119,.55) !important;
+  box-shadow: 0 18px 44px rgba(255,214,119,.12), 0 16px 38px rgba(0,0,0,.36) !important;
+}
+
+html[dir="rtl"] .whatsapp-float {
+  inset-inline-start: 18px !important;
+  inset-inline-end: auto !important;
+}
+
+html[dir="rtl"] .cart-float {
+  inset-inline-start: auto !important;
+  inset-inline-end: 18px !important;
+}
+
+html[dir="ltr"] .whatsapp-float {
+  inset-inline-start: auto !important;
+  inset-inline-end: 18px !important;
+}
+
+html[dir="ltr"] .cart-float {
+  inset-inline-start: 18px !important;
+  inset-inline-end: auto !important;
+}
+
+.whatsapp-float,
+.cart-float {
+  bottom: 18px !important;
+}
+
+body.sticky-cta-visible .whatsapp-float,
+body.sticky-cta-visible .cart-float {
+  bottom: 76px !important;
+}
+
+@media (max-width: 620px) {
+  .cart-float,
+  .whatsapp-float {
+    width: 50px !important;
+    min-width: 50px !important;
+    height: 50px !important;
+  }
+
+  .cart-float svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .cart-float b {
+    top: -4px;
+    inset-inline-end: -4px;
+  }
+}
