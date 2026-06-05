@@ -675,6 +675,7 @@ function updateCartCount() {
   });
   document.querySelectorAll(".cart-link").forEach(link => {
     link.classList.toggle("has-items", count > 0);
+    link.setAttribute("aria-label", t("viewCart"));
   });
 }
 
@@ -715,14 +716,18 @@ function showCartAddedFeedback(product) {
 }
 
 function setupCartNav() {
-  const actions = document.querySelector(".nav-actions");
-  if (!actions || actions.querySelector(".cart-link")) return;
+  if (document.querySelector(".cart-link")) return;
   const link = document.createElement("a");
-  link.className = "cart-link";
+  link.className = "cart-link cart-float";
   link.href = "./cart.html";
-  link.innerHTML = `<span data-i18n="navCart">${t("navCart")}</span><b data-cart-count hidden>0</b>`;
-  const miniCta = actions.querySelector(".mini-cta");
-  actions.insertBefore(link, miniCta || actions.firstChild);
+  link.setAttribute("aria-label", t("viewCart"));
+  link.innerHTML = `
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7.2 7.6h13.1l-1.45 7.15a2.3 2.3 0 0 1-2.25 1.85H9.15a2.3 2.3 0 0 1-2.26-1.88L5.38 6.6H3.7a1 1 0 1 1 0-2h2.5c.49 0 .91.35 1 .83l.22 1.17Zm.55 2 1.02 5.03c.04.19.2.32.38.32h7.45c.18 0 .34-.13.38-.31l1.02-5.04H7.75Zm1.65 10a1.35 1.35 0 1 1 0-2.7 1.35 1.35 0 0 1 0 2.7Zm7.35 0a1.35 1.35 0 1 1 0-2.7 1.35 1.35 0 0 1 0 2.7Z"/>
+    </svg>
+    <b data-cart-count hidden>0</b>
+  `;
+  document.body.appendChild(link);
   updateCartCount();
 }
 
