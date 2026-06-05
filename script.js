@@ -716,6 +716,8 @@ function renderCartFloatContent(focusProduct = null) {
 }
 
 function setupCartNav() {
+  const currentPage = location.pathname.split("/").pop();
+  if (currentPage === "cart.html" || currentPage === "checkout.html") return;
   if (document.querySelector(".cart-link")) return;
   const link = document.createElement("a");
   link.className = "cart-link cart-float";
@@ -1432,3 +1434,4 @@ setupReviews();
 initLiveReviews();
 setupStickyCtaVisibility();
 setupOrderForm();
+
