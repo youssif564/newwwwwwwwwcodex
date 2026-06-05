@@ -4068,6 +4068,19 @@ html[dir="ltr"] .cart-float img { order: 1; }
 html[dir="ltr"] .cart-float-copy { order: 2; text-align: left; }
 html[dir="ltr"] .cart-float-cta { order: 3; }
 
+/* Keep persistent cart helper away from WhatsApp on every language. */
+html[dir="rtl"] .cart-float,
+html[dir="ltr"] .cart-float {
+  inset-inline-start: 18px !important;
+  inset-inline-end: auto !important;
+}
+
+html[dir="rtl"] .whatsapp-float,
+html[dir="ltr"] .whatsapp-float {
+  inset-inline-start: auto !important;
+  inset-inline-end: 18px !important;
+}
+
 @media (max-width: 620px) {
   .cart-float {
     width: min(370px, calc(100vw - 86px)) !important;
