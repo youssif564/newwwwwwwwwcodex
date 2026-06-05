@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Checkout MODO Smart Wallet: اختر المحفظة، منطقة التوصيل، وطريقة الدفع. الدفع عند الاستلام داخل مصر." />
+  <title>Checkout | MODO Smart Wallet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=20260605-product-cart-pages" />
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1723439528639555');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1723439528639555&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+</head>
+<body class="checkout-page">
+  <div class="top-strip"><span data-i18n="topOffer">عرض إطلاق لأول 25 قطعة فقط — شحن سريع والدفع عند الاستلام داخل مصر</span></div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a href="./index.html#home" class="brand" aria-label="MODO Smart Wallets">
+        <img src="https://www.modosmartwallets.com/modo-logo.png" alt="MODO Smart Wallets">
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="./index.html#products" data-i18n="navProducts">المنتجات</a>
+        <details class="nav-about">
+          <summary data-i18n="navAbout">عن مودو</summary>
+          <a href="./story.html" data-i18n="navStory">قصتنا</a>
+          <a href="./why.html" data-i18n="navWhy">ليه تختار مودو</a>
+        </details>
+        <a href="./how.html" data-i18n="navHow">طريقة الاستخدام</a>
+        <a href="./index.html#reviews" data-i18n="navReviews">التقييمات</a>
+        <a href="./faq.html" data-i18n="navFAQ">الأسئلة</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="lang-btn" id="langToggle" type="button">English</button>
+        <a href="./checkout.html" class="mini-cta" data-i18n="navCTA">اطلب الآن</a>
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section order-section checkout-standalone" id="order">
+      <div class="container order-shell">
+        <div class="section-head reveal">
+          <span data-i18n="orderEyebrow">اطلب بأمان</span>
+          <h1 data-i18n="orderTitle">بيانات الطلب</h1>
+          <p data-i18n="orderSubtitle">هنفتح واتساب فورًا لتأكيد الطلب قبل الشحن.</p>
+        </div>
+
+        <form class="order-form reveal" id="orderForm">
+          <div class="selected-product-card" id="selectedProductCard">
+            <img src="https://www.modosmartwallets.com/smart-wallet.jpg" alt="" id="selectedProductImg">
+            <div>
+              <small data-i18n="selectedLabel">الموديل المختار</small>
+              <h3 id="selectedProductName">Modo Smart Wallet</h3>
+              <p><span class="old-price" id="selectedOldPrice">799 EGP</span> <strong id="selectedPrice">650 EGP</strong></p>
+            </div>
+          </div>
+
+          <label for="productSelect" data-i18n="formProduct">اختار المنتج</label>
+          <select id="productSelect" required></select>
+
+          <div class="form-grid">
+            <div>
+              <label for="customerName" data-i18n="formName">الاسم</label>
+              <input type="text" id="customerName" required>
+            </div>
+            <div>
+              <label for="customerPhone" data-i18n="formPhone">رقم الموبايل</label>
+              <input type="tel" id="customerPhone" required>
+            </div>
+          </div>
+
+          <label for="customerAddress" data-i18n="formAddress">العنوان بالتفصيل</label>
+          <textarea id="customerAddress" required></textarea>
+
+          <div class="form-grid">
+            <div>
+              <label for="deliveryRegion" data-i18n="formDeliveryRegion">منطقة التوصيل</label>
+              <select id="deliveryRegion" required>
+                <option value="cairo_giza" data-i18n="deliveryCairoGiza">القاهرة والجيزة — 99 جنيه</option>
+                <option value="alex" data-i18n="deliveryAlex">الإسكندرية — 120 جنيه</option>
+                <option value="delta_canal" data-i18n="deliveryDeltaCanal">الدلتا والقناة — 125 جنيه</option>
+                <option value="assiut" data-i18n="deliveryAssiut">أسيوط — 200 جنيه</option>
+                <option value="northcoast" data-i18n="deliveryNorthCoast">الساحل الشمالي — 220 جنيه</option>
+              </select>
+            </div>
+            <div>
+              <label for="paymentMethod" data-i18n="formPayment">طريقة الدفع</label>
+              <select id="paymentMethod" required>
+                <option value="Cash on Delivery" data-i18n="paymentCOD">الدفع عند الاستلام</option>
+                <option value="Vodafone Cash">Vodafone Cash</option>
+                <option value="InstaPay">InstaPay</option>
+              </select>
+            </div>
+          </div>
+
+          <p class="premium-free-delivery-note" id="premiumFreeDeliveryNote" hidden data-i18n="premiumFreeDeliveryCheckout">توصيل مجاني مع Modo Premium Wallet</p>
+
+          <div class="checkout-total-box" id="checkoutTotalBox">
+            <span data-i18n="checkoutTotalLabel">إجمالي السعر شامل التوصيل</span>
+            <strong id="checkoutTotalValue">749 EGP</strong>
+          </div>
+
+          <label for="customerNotes" data-i18n="formNotes">ملاحظات اختيارية</label>
+          <textarea id="customerNotes"></textarea>
+
+          <button type="submit" class="btn btn-primary order-submit" data-i18n="submitOrder">إرسال الطلب</button>
+          <p class="order-success-message" id="orderSuccess" hidden data-i18n="orderSuccess">تم تأكيد طلبك</p>
+          <p class="form-note"><span data-i18n="formNote">بياناتك تستخدم لتأكيد الطلب فقط.</span></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div><h3>MODO</h3><p data-i18n="footerAbout">محافظ جلد طبيعي 100% ضد الضياع بإحساس آمن وفاخر.</p></div>
+      <div><h4 data-i18n="footerContact">التواصل</h4><a href="tel:01220597999">01220597999</a><a href="https://wa.me/201220597999" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
+      <div><h4 data-i18n="footerSocial">تابعنا</h4><a href="https://www.instagram.com/modo.smart.wallets?igsh=YzNkcmE1bDY4eXp3&utm_source=qr" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.facebook.com/share/1Ctd9zWfsX/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.tiktok.com/@modo.smart.wallet" target="_blank" rel="noopener noreferrer">TikTok</a></div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/201220597999" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">WhatsApp</a>
+  <script type="module" src="script.js?v=20260605-product-cart-pages"></script>
+</body>
+</html>
