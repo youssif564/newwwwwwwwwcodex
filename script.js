@@ -378,6 +378,8 @@ Object.assign(translations.ar, {
   chooseProduct: "تفاصيل وشراء",
   addToCart: "أضف للسلة",
   addedToCart: "اتضافت للسلة",
+  cartAddedToast: "اتضافت للسلة",
+  cartAddedOpen: "شوف السلة",
   buyNow: "اشتري الآن",
   viewCart: "السلة",
   navCart: "السلة",
@@ -408,6 +410,8 @@ Object.assign(translations.en, {
   chooseProduct: "Details & buy",
   addToCart: "Add to cart",
   addedToCart: "Added to cart",
+  cartAddedToast: "Added to cart",
+  cartAddedOpen: "View cart",
   buyNow: "Buy now",
   viewCart: "Cart",
   navCart: "Cart",
@@ -473,6 +477,7 @@ function addToCart(id, qty = 1) {
   if (existing) existing.qty = Math.min(9, Number(existing.qty || 1) + qty);
   else cart.push({ id: product.id, qty });
   saveCart(cart);
+  showCartAddedFeedback(product);
   return cart;
 }
 function setCartQty(id, qty) {
@@ -671,6 +676,42 @@ function updateCartCount() {
   document.querySelectorAll(".cart-link").forEach(link => {
     link.classList.toggle("has-items", count > 0);
   });
+}
+
+function pulseCartLink() {
+  document.querySelectorAll(".cart-link").forEach(link => {
+    link.classList.remove("cart-pulse");
+    void link.offsetWidth;
+    link.classList.add("cart-pulse");
+    window.setTimeout(() => link.classList.remove("cart-pulse"), 720);
+  });
+}
+
+function showCartAddedFeedback(product) {
+  pulseCartLink();
+  let toast = document.getElementById("cartAddToast");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "cartAddToast";
+    toast.className = "cart-add-toast";
+    toast.setAttribute("role", "status");
+    toast.setAttribute("aria-live", "polite");
+    document.body.appendChild(toast);
+  }
+  const productName = product[currentLang].name;
+  toast.innerHTML = `
+    <img src="${product.image}" alt="">
+    <div>
+      <strong>${t("cartAddedToast")}</strong>
+      <span>${productName}</span>
+    </div>
+    <a href="./cart.html">${t("cartAddedOpen")}</a>
+  `;
+  toast.classList.remove("show");
+  void toast.offsetWidth;
+  toast.classList.add("show");
+  window.clearTimeout(showCartAddedFeedback.timer);
+  showCartAddedFeedback.timer = window.setTimeout(() => toast.classList.remove("show"), 2300);
 }
 
 function setupCartNav() {
