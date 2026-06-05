@@ -4157,3 +4157,25 @@ html[dir="ltr"] .whatsapp-float {
     font-size: .78rem !important;
   }
 }
+
+/* Arabic and English: WhatsApp always stays on the visual right side. */
+html[dir="rtl"] body .whatsapp-float,
+html[dir="ltr"] body .whatsapp-float,
+body .whatsapp-float {
+  left: auto !important;
+  right: 18px !important;
+  inset-inline-start: auto !important;
+  inset-inline-end: auto !important;
+}
+
+@media (max-width: 620px) {
+  html[dir="rtl"] body .whatsapp-float,
+  html[dir="ltr"] body .whatsapp-float,
+  body .whatsapp-float {
+    left: auto !important;
+    right: 14px !important;
+    inset-inline-start: auto !important;
+    inset-inline-end: auto !important;
+  }
+}
+
